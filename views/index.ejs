@@ -1,0 +1,54 @@
+<%- include('partials/header.ejs'); -%>
+
+  <div class="box" id="heading">
+    <h1>
+      <%= title %>
+    </h1>
+  </div>
+
+  
+  <form id="sortForm" action="/" method="get">
+    <div class="custom-radio">
+      <input type="radio" id="sortByName" name="sort" value="name">
+      <label for="sortByName">Sort by Name</label>
+    </div>
+  
+    <div class="custom-radio">
+      <input type="radio" id="sortByRating" name="sort" value="rating">
+      <label for="sortByRating">Sort by Rating</label>
+    </div>
+  
+    <div class="custom-radio">
+      <input type="radio" id="sortByDate" name="sort" value="datee">
+      <label for="sortByDate">Sort by Date</label>
+    </div>
+  
+    <button type="submit">Sort</button>
+  </form>
+  
+  
+  <div class="list">
+    <% for(let item of listItems) { %>
+      <div class="box">
+        <a href="/item?id=<%= item.id %>">
+          <h2><%= item.name %></h2>
+        </a>
+        <div class="inner_box">
+          <% if (item.isbn) { %>
+            <img class="image" src="https://covers.openlibrary.org/b/ISBN/<%= item.isbn %>-M.jpg" alt="<%= item.name %> cover">
+          <% } else { %>
+            <img class="image" src="https://via.placeholder.com/150" alt="Placeholder">
+          <% } %>
+          <div class="text">
+            <p><%= item.opinion %></p>
+            <p>DATE: <%= item.datee %> RECOMMENDATION: <%= item.rating %></p>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </div>
+  
+  
+
+  
+  <%- include('partials/footer.ejs'); -%>
